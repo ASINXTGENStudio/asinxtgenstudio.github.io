@@ -209,7 +209,7 @@ html{scroll-behavior:smooth}
 /* cursive about */
 .about-copy h2.cursive{font-family:'Great Vibes',cursive;font-weight:400;text-transform:none;font-size:clamp(40px,5.4vw,74px);line-height:1.15;letter-spacing:0}
 .about-copy h2.cursive .ymfs{color:var(--gold);text-shadow:0 0 14px rgba(255,194,61,.4)}
-.about-copy h2.cursive .gold-text{padding:0 .08em}
+.about-copy h2.cursive .asi-name{display:block;font-family:'Orbitron',sans-serif;font-weight:900;font-size:.62em;letter-spacing:.06em;line-height:1.2;margin-top:.18em;padding:0;filter:drop-shadow(0 0 18px rgba(255,194,61,.45))}
 .about-copy p.rv{font-family:'Dancing Script',cursive;font-size:22px;line-height:1.65;font-weight:400}
 .about-copy p.rv strong{font-weight:700}
 /* gold dust */
@@ -326,10 +326,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
   <section id="about">
     <div class="wrap about-grid">
       <div class="about-copy"><canvas class="dust-cv" id="dustcv"></canvas>
-        <div class="eyebrow rv">About Us</div>
-        <h2 class="rv d1 cursive">Welcome to <span class="ymfs" data-dust>YoungMoneyFuture's</span> <span class="gold-text">ASI NXTGEN STUDIO</span></h2>
+        <div class="eyebrow rv" data-dust>About Us</div>
+        <h2 class="rv d1 cursive" data-dust>Welcome to <span class="ymfs">YoungMoneyFuture's</span> <span class="gold-text asi-name">ASI NXTGEN STUDIO</span></h2>
         <p class="rv d2" data-dust>A multidisciplinary research laboratory at the frontier of <strong>Artificial Intelligence, Robotics, Brain-Computer Interfaces, Extended Reality, Sustainable Energy, Real Estate, Cannabis,</strong> and <strong>Adult Industries.</strong></p>
-        <p class="rv d3">We are a 24/7 active research collective constantly building, testing, and pushing the boundaries of what's possible with emerging technologies. Our mission is to explore, create, and share transformative and evolutionary solutions that will shape the future of Humankind.</p>
+        <p class="rv d3" data-dust>We are a 24/7 active research collective constantly building, testing, and pushing the boundaries of what's possible with emerging technologies. Our mission is to explore, create, and share transformative and evolutionary solutions that will shape the future of Humankind.</p>
       </div>
       <div class="reactor rv d2">
         <div class="ticks"></div><div class="ring r3"></div><div class="ring"></div><div class="ring r1"></div><div class="ring r2"></div>
@@ -462,13 +462,13 @@ document.querySelectorAll('.term').forEach((t,k)=>{const L=t.dataset.lines.repla
   const ctx=cv.getContext('2d'),DPR=Math.min(devicePixelRatio||1,2),COLS=['#FFC23D','#FFE08A','#E8A317','#FFF3C4'];
   // wrap words in spans (keeps <strong> etc.)
   const groups=[...box.querySelectorAll('[data-dust]')].map(el=>{const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
-    nodes.forEach(n=>{const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){f.append(w);return}const bits=el.classList.contains('ymfs')?[...w]:[w];bits.forEach(c=>{const sp=document.createElement('span');sp.className='dw';sp.textContent=c;f.append(sp)})});n.replaceWith(f)});
+    nodes.forEach(n=>{const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){f.append(w);return}const bits=el.tagName==='H2'?[...w]:[w];bits.forEach(c=>{const sp=document.createElement('span');sp.className='dw';sp.textContent=c;f.append(sp)})});n.replaceWith(f)});
     return [...el.querySelectorAll('.dw')]});
   let parts=[],timers=[],raf=0,played=false;
   function size(){const r=box.getBoundingClientRect();cv.width=r.width*DPR;cv.height=(r.height+120)*DPR;cv.style.width=r.width+'px';cv.style.height=(r.height+120)+'px';cv.style.top='-60px'}
   function burst(w){const b=box.getBoundingClientRect(),r=w.getBoundingClientRect(),cs=getComputedStyle(w);if(!r.width)return;
     const o=document.createElement('canvas'),W=Math.ceil(r.width)+4,H=Math.ceil(r.height);o.width=W*DPR;o.height=H*DPR;const ox=o.getContext('2d');ox.scale(DPR,DPR);
-    ox.font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;if('letterSpacing' in ox)ox.letterSpacing=cs.letterSpacing;ox.textBaseline='middle';ox.fillStyle='#fff';ox.fillText(w.textContent,0,H/2);
+    ox.font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;if('letterSpacing' in ox)ox.letterSpacing=cs.letterSpacing;ox.textBaseline='middle';ox.fillStyle='#fff';ox.fillText(cs.textTransform==='uppercase'?w.textContent.toUpperCase():w.textContent,0,H/2);
     const d=ox.getImageData(0,0,o.width,o.height).data,st=Math.max(2,Math.round(2*DPR)),keep=parseFloat(cs.fontSize)>16?.5:.35;
     for(let y=0;y<o.height;y+=st)for(let x=0;x<o.width;x+=st)if(d[(y*o.width+x)*4+3]>110&&Math.random()<keep)
       parts.push({x:r.left-b.left+x/DPR,y:r.top-b.top+60+y/DPR,vx:Math.random()*1.3+.25,vy:-(Math.random()*1+.15),a:1,s:Math.random()<.25?3:2,c:COLS[Math.random()*4|0]});
@@ -477,8 +477,8 @@ document.querySelectorAll('.term').forEach((t,k)=>{const L=t.dataset.lines.repla
     parts=parts.filter(p=>(p.a-=.012)>0);for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy-=.01;p.vx+=(Math.random()-.4)*.08;ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.fillRect(Math.round(p.x),Math.round(p.y),p.s,p.s)}
     ctx.globalAlpha=1;raf=parts.length?requestAnimationFrame(f):0})}
   function play(){if(played)return;played=true;size();let t=500;
-    groups.forEach((ws,gi)=>{const dur=gi===0?1400:Math.min(3200,ws.length*70),gap=ws.length>1?dur/(ws.length-1):0;
-      ws.forEach((w,k)=>timers.push(setTimeout(()=>burst(w),t+k*gap)));t+=dur+250})}
+    groups.forEach((ws,gi)=>{const gap=ws[0]&&ws[0].closest('h2')?38:55,dur=gap*Math.max(0,ws.length-1);
+      ws.forEach((w,k)=>timers.push(setTimeout(()=>burst(w),t+k*gap)));t+=dur+180})}
   function reset(){timers.forEach(clearTimeout);timers=[];played=false;box.querySelectorAll('.glint').forEach(w=>w.classList.remove('glint'))}
   new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?play():reset()),{threshold:.45}).observe(box)})();
 
