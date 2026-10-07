@@ -195,13 +195,9 @@ h2{font-family:'Orbitron';font-weight:800;font-size:clamp(32px,4.6vw,62px);line-
 html{scroll-behavior:smooth}
 #connect{scroll-margin-top:0}
 
-/* robot 3D assembly */
-.hero-img{perspective:1400px;transform-style:preserve-3d}
+/* robot binary assembly */
 .hero-img.assembling{background-image:none}
-.hero-img .strip{position:absolute;inset:0;background-image:url(/hero-robot.jpg);background-position:inherit;background-size:inherit;background-repeat:no-repeat;will-change:transform,opacity,filter;backface-visibility:hidden}
-.hero-img .flare{position:absolute;left:68%;top:34%;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0,#FFE08A 20%,rgba(255,194,61,.6) 45%,transparent 70%);opacity:0;pointer-events:none}
-.hero-img .ring{position:absolute;left:68%;top:40%;width:40px;height:40px;border:2px solid rgba(255,214,120,.9);border-radius:50%;transform:translate(-50%,-50%);opacity:0;box-shadow:0 0 30px rgba(255,194,61,.8),inset 0 0 30px rgba(255,194,61,.5)}
-.hero-img .scanl{position:absolute;left:30%;right:0;height:3px;top:0;background:linear-gradient(90deg,transparent,#FFE08A 30%,#fff 60%,transparent);box-shadow:0 0 24px 6px rgba(255,194,61,.6);opacity:0}
+.bin-cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 /* Future glitch */
 .gf{position:relative;display:inline-block;color:#fff;animation:gfj 2.4s infinite steps(1)}
 .gf::before,.gf::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
@@ -346,7 +342,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
       <h2 class="rv d1">What We <span class="gold-text">Research</span></h2>
       <p class="lead rv d2">Our specialized divisions explore across multiple domains of frontier technology, pushing the limits of innovation.</p>
       <div class="cards">
-        <a class="card rv" href="#"><span class="idx">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="7" width="14" height="12" rx="2"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M2 12h3M19 12h3"/></svg></div><h3>Artificial Intelligence</h3><p>Models, Agents, Art Generation &amp; Leaderboards</p><span class="more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="bar"></i></a>
+        <a class="card rv" href="#"><span class="idx">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="7" width="14" height="12" rx="2"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M2 12h3M19 12h3"/></svg></div><h3>Artificial Super Intelligence</h3><p>Models, Agents, Art Generation &amp; Leaderboards</p><span class="more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="bar"></i></a>
         <a class="card rv d1" href="#"><span class="idx">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3a4 4 0 0 0-4 4 3.5 3.5 0 0 0-2 6.3A4 4 0 0 0 9 21V3zM15 3a4 4 0 0 1 4 4 3.5 3.5 0 0 1 2 6.3A4 4 0 0 1 15 21V3z"/><path d="M9 8h2M13 12h2M9 16h2"/></svg></div><h3>Brain-Computer Interfaces</h3><p>Wearables, Implants &amp; Neural Tech</p><span class="more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="bar"></i></a>
         <a class="card rv d2" href="#"><span class="idx">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="6" width="12" height="12" rx="1"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div><h3>Robotics</h3><p>Humanoids, Vehicles &amp; Autonomous Devices</p><span class="more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="bar"></i></a>
         <a class="card rv d3" href="#"><span class="idx">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4l-2-3h-4l-2 3H4a2 2 0 0 1-2-2z"/><circle cx="7.5" cy="12" r="1.5"/><circle cx="16.5" cy="12" r="1.5"/></svg></div><h3>Extended Reality</h3><p>VR, MR &amp; AR Experiences</p><span class="more">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="bar"></i></a>
@@ -484,22 +480,53 @@ document.querySelectorAll('.term').forEach((t,k)=>{const L=t.dataset.lines.repla
 // Future: constant glitch scramble
 (()=>{const el=document.querySelector('.gf');if(!el)return;const T='Future',G='!<>-_\\/[]{}=+*^?#01ΔΣΞ█▓▒░';
   setInterval(()=>{let n=0;const id=setInterval(()=>{const out=[...T].map((c,i)=>Math.random()<.45&&n<6?G[Math.random()*G.length|0]:c).join('');el.textContent=out;el.dataset.t=out;if(++n>7){clearInterval(id);el.textContent=T;el.dataset.t=T}},55)},1600)})();
-// robot 3D assembly
-(()=>{const h=document.getElementById('heroImg');if(!h||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const N=innerWidth<720?10:16,strips=[];h.classList.add('assembling');
-  for(let i=0;i<N;i++){const d=document.createElement('div');d.className='strip';const a=i/N*100,b=100-(i+1)/N*100;d.style.clipPath=`inset(${a}% 0 ${Math.max(0,b-0.3)}% 0)`;h.prepend(d);strips.push(d)}
-  const fl=document.createElement('div');fl.className='flare';const rg=document.createElement('div');rg.className='ring';const sc=document.createElement('div');sc.className='scanl';h.append(fl,rg,sc);
-  const E='cubic-bezier(.16,1,.3,1)';let last;
-  strips.forEach((d,i)=>{const dir=i%2?1:-1,z=-900-Math.random()*900,x=dir*(120+Math.random()*260),ry=dir*(35+Math.random()*40),rx=(Math.random()-.5)*50;
-    last=d.animate([{transform:`translate3d(${x}px,${(Math.random()-.5)*120}px,${z}px) rotateY(${ry}deg) rotateX(${rx}deg)`,opacity:0,filter:'brightness(3) sepia(1) saturate(4) hue-rotate(-10deg) blur(6px)'},
-      {opacity:.9,filter:'brightness(2.2) sepia(.8) saturate(3) blur(2px)',offset:.55},
-      {transform:'none',opacity:1,filter:'none'}],{duration:1700+Math.random()*500,delay:250+i*70+Math.random()*120,easing:E,fill:'both'})});
-  sc.animate([{top:'0%',opacity:0},{opacity:1,offset:.1},{top:'100%',opacity:0}],{duration:1600,delay:900,easing:'ease-in-out',fill:'both'});
-  const end=250+N*70+2400;
-  fl.animate([{width:'10px',height:'10px',opacity:0},{width:'520px',height:'520px',opacity:.95,offset:.25},{width:'900px',height:'900px',opacity:0}],{duration:1300,delay:end-700,easing:'ease-out',fill:'both'});
-  rg.animate([{width:'40px',height:'40px',opacity:0},{opacity:1,offset:.1},{width:'1600px',height:'1600px',opacity:0,borderWidth:'1px'}],{duration:1500,delay:end-650,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'});
-  h.animate([{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:end+600,easing:E});
-  setTimeout(()=>{h.classList.remove('assembling');strips.forEach(d=>d.remove());setTimeout(()=>{fl.remove();rg.remove();sc.remove()},1200)},end+150)})();
+// robot: flood of electric 0s and 1s forming it, every time the hero is scrolled to
+(()=>{const h=document.getElementById('heroImg'),hero=h&&h.closest('.hero');if(!h||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const img=new Image();img.src='/hero-robot.jpg';
+  const cv=document.createElement('canvas');cv.className='bin-cv';h.prepend(cv);const x=cv.getContext('2d');
+  const DPR=Math.min(devicePixelRatio||1,2),SH=['#7a4f08','#C88A14','#FFC23D','#FFE08A','#FFFFFF'];
+  let P=[],W,H,rect,sprites,raf=0,t0=0,running=false,armed=true;
+  function pct(v,free){return v.endsWith('%')?parseFloat(v)/100*free:parseFloat(v)}
+  function layout(){const r=h.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*DPR;cv.height=H*DPR;
+    const cs=getComputedStyle(h),iw=img.naturalWidth,ih=img.naturalHeight,sz=cs.backgroundSize.split(' ');let dw,dh;
+    if(sz[0]==='cover'){const k=Math.max(W/iw,H/ih);dw=iw*k;dh=ih*k}else if(sz[0]==='contain'){const k=Math.min(W/iw,H/ih);dw=iw*k;dh=ih*k}
+    else{const a=sz[0],b=sz[1]||'auto';dh=b==='auto'?null:(b.endsWith('%')?parseFloat(b)/100*H:parseFloat(b));dw=a==='auto'?(dh?dh*iw/ih:iw):(a.endsWith('%')?parseFloat(a)/100*W:parseFloat(a));if(!dh)dh=dw*ih/iw}
+    const pos=cs.backgroundPosition.split(' ');rect={x:pct(pos[0],W-dw),y:pct(pos[1]||'50%',H-dh),w:dw,h:dh}}
+  function mkSprites(fs){sprites=SH.map(c=>['0','1'].map(ch=>{const o=document.createElement('canvas');o.width=o.height=Math.ceil(fs*1.4*DPR);const g=o.getContext('2d');
+    g.font=`700 ${fs*DPR}px 'Share Tech Mono','Orbitron',monospace`;g.textAlign='center';g.textBaseline='middle';g.shadowColor=c;g.shadowBlur=6*DPR;g.fillStyle=c;g.fillText(ch,o.width/2,o.height/2);return o}))}
+  function build(){layout();const cell=W<720?7:9;mkSprites(cell*1.15);
+    const o=document.createElement('canvas'),cols=Math.ceil(rect.w/cell),rows=Math.ceil(rect.h/cell);o.width=cols;o.height=rows;const g=o.getContext('2d');g.drawImage(img,0,0,cols,rows);
+    const d=g.getImageData(0,0,cols,rows).data;P=[];
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const k=(r*cols+c)*4,L=(d[k]*.3+d[k+1]*.55+d[k+2]*.15)/255;
+      const tx=rect.x+c*cell,ty=rect.y+r*cell;if(L<.16||tx<-cell||ty<-cell||tx>W||ty>H)continue;
+      const side=Math.random();let sx,sy;if(side<.45){sx=-40-Math.random()*W*.3;sy=Math.random()*H}else if(side<.75){sx=Math.random()*W;sy=-40-Math.random()*H*.3}else{sx=W+40+Math.random()*80;sy=Math.random()*H}
+      P.push({tx,ty,sx,sy,b:Math.min(4,L*5|0),ch:Math.random()<.5?0:1,d:Math.random()*900+(tx/W)*700,dur:1300+Math.random()*900,j:Math.random()*6.28})}
+    if(P.length>4200){P.sort(()=>Math.random()-.5);P.length=4200}}
+  const ease=t=>1-Math.pow(1-t,4);
+  function frame(now){const t=now-t0;x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,cv.width,cv.height);x.setTransform(DPR,0,0,DPR,0,0);
+    const reveal=Math.max(0,Math.min(1,(t-3300)/900)),fs=sprites[0][0].width/DPR,half=fs/2;let fly=[];
+    x.globalAlpha=1-reveal*.95;
+    for(const p of P){let k=(t-p.d)/p.dur;if(k<=0)continue;k=Math.min(1,k);const e=ease(k);
+      let px=p.sx+(p.tx-p.sx)*e,py=p.sy+(p.ty-p.sy)*e;
+      if(k<1){const amp=(1-k)*14;px+=Math.sin(t*.02+p.j)*amp;py+=Math.cos(t*.025+p.j*1.7)*amp;if(Math.random()<.3)p.ch^=1;if(Math.random()<.004)fly.push(px,py)}
+      else if(Math.random()<.02)p.ch^=1;
+      const b=k<1?Math.min(4,p.b+1+(Math.random()<.2)):p.b;x.drawImage(sprites[b][p.ch],px-half,py-half,fs,fs)}
+    // electric arcs between in-flight digits
+    x.globalAlpha=(1-reveal)*.9;x.strokeStyle='#FFF3C4';x.shadowColor='#FFC23D';x.shadowBlur=12;x.lineWidth=1.2;
+    for(let i=0;i+3<fly.length;i+=4){const ax=fly[i],ay=fly[i+1],bx=fly[i+2],by=fly[i+3];if(Math.hypot(ax-bx,ay-by)>260)continue;x.beginPath();x.moveTo(ax,ay);
+      for(let s=1;s<6;s++){const f=s/6;x.lineTo(ax+(bx-ax)*f+(Math.random()-.5)*18,ay+(by-ay)*f+(Math.random()-.5)*18)}x.lineTo(bx,by);x.stroke()}
+    x.shadowBlur=0;
+    // image fades in through the code
+    if(reveal>0){x.globalAlpha=reveal;x.drawImage(img,rect.x,rect.y,rect.w,rect.h)}
+    // power-up flash
+    const fk=(t-3200)/900;if(fk>0&&fk<1){const cx=rect.x+rect.w*.5,cy=rect.y+rect.h*.38,R=40+fk*Math.max(W,H)*.6,gr=x.createRadialGradient(cx,cy,0,cx,cy,R);
+      gr.addColorStop(0,'rgba(255,240,200,'+(.55*(1-fk))+')');gr.addColorStop(.4,'rgba(255,194,61,'+(.3*(1-fk))+')');gr.addColorStop(1,'rgba(255,194,61,0)');x.globalAlpha=1;x.fillStyle=gr;x.fillRect(0,0,W,H)}
+    x.globalAlpha=1;
+    if(t<4300)raf=requestAnimationFrame(frame);else{h.classList.remove('assembling');x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,cv.width,cv.height);running=false;raf=0}}
+  function play(){if(running||!img.complete||!img.naturalWidth)return;running=true;armed=false;h.classList.add('assembling');build();t0=performance.now();raf=requestAnimationFrame(frame)}
+  h.classList.add('assembling');
+  img.decode().then(()=>{new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(armed)play()}else{armed=true;if(!running)h.classList.add('assembling')}}),{threshold:.35}).observe(hero)}).catch(()=>h.classList.remove('assembling'));
+})();
 </script>
 </body>
 </html>
