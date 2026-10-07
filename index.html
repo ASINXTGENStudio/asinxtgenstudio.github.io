@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="/favicon.png?v=asi02" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
 :root{
   --bg:#050505; --bg2:#0b0b0c; --panel:rgba(18,16,12,.62);
@@ -206,6 +206,12 @@ html{scroll-behavior:smooth}
 @keyframes gfa{0%{clip-path:inset(0 0 85% 0);transform:translate(-3px,0)}10%{clip-path:inset(40% 0 35% 0);transform:translate(4px,-1px)}20%{clip-path:inset(75% 0 5% 0);transform:translate(-5px,1px)}30%{clip-path:inset(15% 0 60% 0);transform:translate(2px,0)}40%{clip-path:inset(55% 0 25% 0);transform:translate(-2px,2px)}50%{clip-path:inset(0 0 0 0);transform:translate(0,0);opacity:0}60%{clip-path:inset(30% 0 50% 0);transform:translate(6px,0);opacity:1}70%{clip-path:inset(85% 0 0 0);transform:translate(-4px,0)}80%{clip-path:inset(5% 0 75% 0);transform:translate(3px,-2px)}90%{clip-path:inset(45% 0 40% 0);transform:translate(-6px,1px)}}
 @keyframes gfb{0%{clip-path:inset(65% 0 10% 0);transform:translate(4px,1px)}15%{clip-path:inset(10% 0 70% 0);transform:translate(-4px,0)}30%{clip-path:inset(35% 0 45% 0);transform:translate(5px,-1px)}45%{opacity:0}55%{opacity:.7;clip-path:inset(80% 0 2% 0);transform:translate(-6px,0)}70%{clip-path:inset(20% 0 55% 0);transform:translate(3px,2px)}85%{clip-path:inset(50% 0 30% 0);transform:translate(-3px,-1px)}}
 @keyframes gfj{0%,100%{transform:none;text-shadow:0 0 18px rgba(255,194,61,.5)}18%{transform:skewX(-8deg) translateX(2px);text-shadow:-3px 0 #00E5FF,3px 0 #FFC23D}20%{transform:none}52%{transform:translateX(-3px) skewX(6deg);text-shadow:3px 0 #00E5FF,-3px 0 #FFC23D}54%{transform:none}77%{transform:scaleY(1.06) translateY(-1px);opacity:.75}79%{transform:none;opacity:1}}
+/* cursive about */
+.about-copy h2.cursive{font-family:'Great Vibes',cursive;font-weight:400;text-transform:none;font-size:clamp(40px,5.4vw,74px);line-height:1.15;letter-spacing:0}
+.about-copy h2.cursive .ymfs{color:var(--gold);text-shadow:0 0 14px rgba(255,194,61,.4)}
+.about-copy h2.cursive .gold-text{padding:0 .08em}
+.about-copy p.rv{font-family:'Dancing Script',cursive;font-size:22px;line-height:1.65;font-weight:400}
+.about-copy p.rv strong{font-weight:700}
 /* gold dust */
 .about-copy{position:relative}
 .dust-cv{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;z-index:3}
@@ -321,8 +327,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
     <div class="wrap about-grid">
       <div class="about-copy"><canvas class="dust-cv" id="dustcv"></canvas>
         <div class="eyebrow rv">About Us</div>
-        <h2 class="rv d1">Welcome to the <span class="gold-text">ASI NXTGEN</span> Studio</h2>
-        <p class="script rv d2" data-dust>YoungMoneyFuture's</p>
+        <h2 class="rv d1 cursive">Welcome to <span class="ymfs" data-dust>YoungMoneyFuture's</span> <span class="gold-text">ASI NXTGEN STUDIO</span></h2>
         <p class="rv d2" data-dust>A multidisciplinary research laboratory at the frontier of <strong>Artificial Intelligence, Robotics, Brain-Computer Interfaces, Extended Reality, Sustainable Energy, Real Estate, Cannabis,</strong> and <strong>Adult Industries.</strong></p>
         <p class="rv d3">We are a 24/7 active research collective constantly building, testing, and pushing the boundaries of what's possible with emerging technologies. Our mission is to explore, create, and share transformative and evolutionary solutions that will shape the future of Humankind.</p>
       </div>
@@ -457,7 +462,7 @@ document.querySelectorAll('.term').forEach((t,k)=>{const L=t.dataset.lines.repla
   const ctx=cv.getContext('2d'),DPR=Math.min(devicePixelRatio||1,2),COLS=['#FFC23D','#FFE08A','#E8A317','#FFF3C4'];
   // wrap words in spans (keeps <strong> etc.)
   const groups=[...box.querySelectorAll('[data-dust]')].map(el=>{const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
-    nodes.forEach(n=>{const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){f.append(w);return}const bits=el.classList.contains('script')?[...w]:[w];bits.forEach(c=>{const sp=document.createElement('span');sp.className='dw';sp.textContent=c;f.append(sp)})});n.replaceWith(f)});
+    nodes.forEach(n=>{const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){f.append(w);return}const bits=el.classList.contains('ymfs')?[...w]:[w];bits.forEach(c=>{const sp=document.createElement('span');sp.className='dw';sp.textContent=c;f.append(sp)})});n.replaceWith(f)});
     return [...el.querySelectorAll('.dw')]});
   let parts=[],timers=[],raf=0,played=false;
   function size(){const r=box.getBoundingClientRect();cv.width=r.width*DPR;cv.height=(r.height+120)*DPR;cv.style.width=r.width+'px';cv.style.height=(r.height+120)+'px';cv.style.top='-60px'}
