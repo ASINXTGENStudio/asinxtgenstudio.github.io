@@ -121,7 +121,7 @@ h2{font-family:'Orbitron';font-weight:800;font-size:clamp(32px,4.6vw,62px);line-
 .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
 .about-copy p{color:var(--dim);font-size:17px;line-height:1.8;margin-top:18px;font-weight:300}
 .about-copy p strong{color:var(--text);font-weight:600}
-.about-copy .script{font-family:'Orbitron';font-size:15px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-top:0}
+.about-copy .script{font-family:'Orbitron';font-size:17px;letter-spacing:.12em;color:var(--gold);text-transform:none;margin-top:0}
 .reactor{position:relative;aspect-ratio:1;max-width:500px;margin-left:auto;width:100%}
 .reactor img{position:absolute;inset:17%;width:66%;border-radius:50%;filter:drop-shadow(0 0 50px rgba(255,194,61,.45));animation:float 6s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-12px)}}
@@ -195,9 +195,10 @@ h2{font-family:'Orbitron';font-weight:800;font-size:clamp(32px,4.6vw,62px);line-
 html{scroll-behavior:smooth}
 #connect{scroll-margin-top:0}
 /* gold dust */
-.dust-wrap{position:relative;display:inline-block}
-.dust-txt{display:inline-block;--p:-10%;-webkit-mask-image:linear-gradient(90deg,transparent var(--p),#000 calc(var(--p) + 6%));mask-image:linear-gradient(90deg,transparent var(--p),#000 calc(var(--p) + 6%));text-shadow:0 0 12px rgba(255,194,61,.45)}
-.dust-cv{width:0;height:0;position:absolute;left:-40px;top:-90px;pointer-events:none;z-index:3}
+.about-copy{position:relative}
+.dust-cv{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;z-index:3}
+.dw{display:inline;transition:color .5s,text-shadow .5s}
+.dw.glint{color:#FFE08A;text-shadow:0 0 10px rgba(255,194,61,.9),0 0 22px rgba(255,194,61,.5)}
 /* social shine */
 .socials a{position:relative;overflow:hidden}
 .socials a::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,rgba(255,240,190,.95) 50%,transparent 60%);transform:translateX(-120%);pointer-events:none}
@@ -262,7 +263,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
     </nav>
     <div class="cta-row">
       <a class="btn" href="#connect">Contact</a>
-      <a class="btn solid" href="https://www.paypal.com/donate?business=A.I.NXTGENStudio%40gmail.com&currency_code=USD" target="_blank" rel="noopener">
+      <a class="btn solid" href="https://www.paypal.com/donate?business=ASINXTGENStudio%40gmail.com&currency_code=USD" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.3 2.4.7-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>Donate</a>
       <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -271,7 +272,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
 <div class="mobile-menu" id="mm">
   <a href="#research">Our Research</a><a href="#about">About Us</a><a href="#news">News</a>
   <a class="btn" href="#connect">Contact</a>
-  <a class="btn solid" href="https://www.paypal.com/donate?business=A.I.NXTGENStudio%40gmail.com&currency_code=USD" target="_blank" rel="noopener">Donate</a>
+  <a class="btn solid" href="https://www.paypal.com/donate?business=ASINXTGENStudio%40gmail.com&currency_code=USD" target="_blank" rel="noopener">Donate</a>
 </div>
 
 <main>
@@ -306,11 +307,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
 
   <section id="about">
     <div class="wrap about-grid">
-      <div class="about-copy">
+      <div class="about-copy"><canvas class="dust-cv" id="dustcv"></canvas>
         <div class="eyebrow rv">About Us</div>
         <h2 class="rv d1">Welcome to the <span class="gold-text">ASI NXTGEN</span> Studio</h2>
-        <p class="script rv d2 dust-wrap"><span class="dust-txt" id="ymf">YoungMoneyFuture's</span><canvas class="dust-cv" id="dustcv"></canvas></p>
-        <p class="rv d2">A multidisciplinary research laboratory at the frontier of <strong>Artificial Intelligence, Robotics, Brain-Computer Interfaces, Extended Reality, Sustainable Energy, Real Estate, Cannabis,</strong> and <strong>Adult Industries.</strong></p>
+        <p class="script rv d2" data-dust>YoungMoneyFuture's</p>
+        <p class="rv d2" data-dust>A multidisciplinary research laboratory at the frontier of <strong>Artificial Intelligence, Robotics, Brain-Computer Interfaces, Extended Reality, Sustainable Energy, Real Estate, Cannabis,</strong> and <strong>Adult Industries.</strong></p>
         <p class="rv d3">We are a 24/7 active research collective constantly building, testing, and pushing the boundaries of what's possible with emerging technologies. Our mission is to explore, create, and share transformative and evolutionary solutions that will shape the future of Humankind.</p>
       </div>
       <div class="reactor rv d2">
@@ -387,7 +388,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;background:linear-gr
   <div class="wrap">
     <div class="f-top">
       <a href="#" class="brand"><img src="/logo.webp?v=asi02" alt="" /><div><b><span>ASI</span> NXTGEN</b><small>YoungMoneyFuture's Research Lab</small></div></a>
-      <a class="btn" href="https://www.paypal.com/donate?business=A.I.NXTGENStudio%40gmail.com&currency_code=USD" target="_blank" rel="noopener">Donate</a>
+      <a class="btn" href="https://www.paypal.com/donate?business=ASINXTGENStudio%40gmail.com&currency_code=USD" target="_blank" rel="noopener">Donate</a>
       <div class="socials">
         <a href="https://github.com/ASINXTGENStudio" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg></a>
         <a href="https://x.com/ASINXTGEN" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.3h3.4l-7.4 8.4L23 21.7h-6.8l-5.3-6.9-6.1 6.9H1.4l7.9-9L.9 2.3h7l4.8 6.3 5.5-6.3zm-1.2 17.4h1.9L7 4.2H5z"/></svg></a>
@@ -438,28 +439,31 @@ document.querySelectorAll('.term').forEach((t,k)=>{const L=t.dataset.lines.repla
 // socials shine
 (()=>{const so=document.querySelector('#connect .socials');if(!so)return;so.querySelectorAll('a').forEach((a,i)=>a.style.setProperty('--i',i));
   new IntersectionObserver(es=>es.forEach(e=>so.classList.toggle('lit',e.isIntersecting)),{threshold:.6}).observe(so)})();
-// YoungMoneyFuture gold dust
-(()=>{const t=document.getElementById('ymf'),cv=document.getElementById('dustcv');if(!t||!cv)return;
-  const ctx=cv.getContext('2d');let parts=[],run=false,done=false;const PAD=40,UP=90,DPR=Math.min(devicePixelRatio||1,2);
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function build(){const r=t.getBoundingClientRect(),cs=getComputedStyle(t);const w=Math.ceil(r.width),h=Math.ceil(r.height);
-    cv.width=(w+PAD*2+120)*DPR;cv.height=(h+UP+40)*DPR;cv.style.width=(w+PAD*2+120)+'px';cv.style.height=(h+UP+40)+'px';
-    const o=document.createElement('canvas');o.width=w*DPR;o.height=h*DPR;const ox=o.getContext('2d');ox.scale(DPR,DPR);
-    ox.font=`${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;if('letterSpacing' in ox)ox.letterSpacing=cs.letterSpacing;
-    ox.textBaseline='middle';ox.fillStyle='#fff';ox.fillText(t.textContent.toUpperCase(),0,h/2);
-    const d=ox.getImageData(0,0,o.width,o.height).data,step=Math.max(2,Math.round(2*DPR));parts=[];
-    for(let y=0;y<o.height;y+=step)for(let x=0;x<o.width;x+=step){if(d[(y*o.width+x)*4+3]>110){
-      parts.push({x0:x/DPR,y0:y/DPR,x:x/DPR+PAD,y:y/DPR+UP,vx:Math.random()*1.4+.3,vy:-(Math.random()*1.1+.2),a:1,s:Math.random()<.25?3:2,c:['#FFC23D','#FFE08A','#E8A317','#FFF3C4'][Math.random()*4|0],on:false})}}
-    return w}
-  function play(){if(run||reduce)return;run=true;const w=build();const start=performance.now(),dur=1600;
-    (function f(now){const k=Math.min(1,(now-start)/dur),sweep=k*(w+20);t.style.setProperty('--p',(k*106-6)+'%');
-      ctx.setTransform(DPR,0,0,DPR,0,0);ctx.clearRect(0,0,cv.width,cv.height);let alive=0;
-      for(const p of parts){if(!p.on){if(p.x0<=sweep)p.on=true;else continue}
-        p.x+=p.vx;p.y+=p.vy;p.vy-=.012;p.vx+=(Math.random()-.4)*.08;p.a-=.011;if(p.a<=0)continue;alive++;
-        ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.fillRect(Math.round(p.x),Math.round(p.y),p.s,p.s)}
-      ctx.globalAlpha=1;if(k<1||alive)requestAnimationFrame(f);else{run=false;done=true}})(start)}
-  function reset(){if(run)return;done=false;t.style.setProperty('--p','-10%');ctx.clearRect(0,0,cv.width,cv.height)}
-  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!done)setTimeout(play,500);else if(!e.isIntersecting&&done)reset()}),{threshold:1}).observe(t.parentNode)})();
+// gold dust: YoungMoneyFuture's, then the paragraph
+(()=>{const box=document.querySelector('.about-copy'),cv=document.getElementById('dustcv');if(!box||!cv)return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const ctx=cv.getContext('2d'),DPR=Math.min(devicePixelRatio||1,2),COLS=['#FFC23D','#FFE08A','#E8A317','#FFF3C4'];
+  // wrap words in spans (keeps <strong> etc.)
+  const groups=[...box.querySelectorAll('[data-dust]')].map(el=>{const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
+    nodes.forEach(n=>{const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){f.append(w);return}const bits=el.classList.contains('script')?[...w]:[w];bits.forEach(c=>{const sp=document.createElement('span');sp.className='dw';sp.textContent=c;f.append(sp)})});n.replaceWith(f)});
+    return [...el.querySelectorAll('.dw')]});
+  let parts=[],timers=[],raf=0,played=false;
+  function size(){const r=box.getBoundingClientRect();cv.width=r.width*DPR;cv.height=(r.height+120)*DPR;cv.style.width=r.width+'px';cv.style.height=(r.height+120)+'px';cv.style.top='-60px'}
+  function burst(w){const b=box.getBoundingClientRect(),r=w.getBoundingClientRect(),cs=getComputedStyle(w);if(!r.width)return;
+    const o=document.createElement('canvas'),W=Math.ceil(r.width)+4,H=Math.ceil(r.height);o.width=W*DPR;o.height=H*DPR;const ox=o.getContext('2d');ox.scale(DPR,DPR);
+    ox.font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;if('letterSpacing' in ox)ox.letterSpacing=cs.letterSpacing;ox.textBaseline='middle';ox.fillStyle='#fff';ox.fillText(w.textContent,0,H/2);
+    const d=ox.getImageData(0,0,o.width,o.height).data,st=Math.max(2,Math.round(2*DPR)),keep=parseFloat(cs.fontSize)>16?.5:.35;
+    for(let y=0;y<o.height;y+=st)for(let x=0;x<o.width;x+=st)if(d[(y*o.width+x)*4+3]>110&&Math.random()<keep)
+      parts.push({x:r.left-b.left+x/DPR,y:r.top-b.top+60+y/DPR,vx:Math.random()*1.3+.25,vy:-(Math.random()*1+.15),a:1,s:Math.random()<.25?3:2,c:COLS[Math.random()*4|0]});
+    w.classList.add('glint');timers.push(setTimeout(()=>w.classList.remove('glint'),700));loop()}
+  function loop(){if(raf)return;raf=requestAnimationFrame(function f(){ctx.setTransform(DPR,0,0,DPR,0,0);ctx.clearRect(0,0,cv.width,cv.height);
+    parts=parts.filter(p=>(p.a-=.012)>0);for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy-=.01;p.vx+=(Math.random()-.4)*.08;ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.fillRect(Math.round(p.x),Math.round(p.y),p.s,p.s)}
+    ctx.globalAlpha=1;raf=parts.length?requestAnimationFrame(f):0})}
+  function play(){if(played)return;played=true;size();let t=500;
+    groups.forEach((ws,gi)=>{const dur=gi===0?1400:Math.min(3200,ws.length*70),gap=ws.length>1?dur/(ws.length-1):0;
+      ws.forEach((w,k)=>timers.push(setTimeout(()=>burst(w),t+k*gap)));t+=dur+250})}
+  function reset(){timers.forEach(clearTimeout);timers=[];played=false;box.querySelectorAll('.glint').forEach(w=>w.classList.remove('glint'))}
+  new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?play():reset()),{threshold:.45}).observe(box)})();
 </script>
 </body>
 </html>
